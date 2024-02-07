@@ -10,9 +10,9 @@ build_image:
   services:
     - docker:dind
   script:
-    - docker build -t jaft/my-node:Latest .
-    - docker login -u jaft -p justafool $CI_REGISTRY
-    - docker push jaft/my-node:Latest .
+    - docker build -t jaft/my-node:latest .
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u jaft --password-stdin $CI_REGISTRY
+    - docker push jaft/my-node:latest
 
 # Define job for deploying (optional)
 deploy:
@@ -21,5 +21,5 @@ deploy:
     # Add deployment commands here
     - echo "Deployment script goes here"
   only:
-    - main  # Only deploy from the master branch (adjust as needed)
+    - main  # Only deploy from the main branch (adjust as needed)
 
