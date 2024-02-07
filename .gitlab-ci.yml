@@ -3,7 +3,7 @@ stages:
   - build
   - deploy
 before_script:
-- docker login -u jaft -p justafool
+#- docker login -u jaft -p justafool
 - 'which ssh-agent || ( apk add --update openssh git -q )'
 - eval $(ssh-agent -s)
 #- ssh-add $UB_SSH_PRIVATE_KEY  # add ssh key
