@@ -19,7 +19,8 @@ deploy:
   stage: deploy
   script:
     # Add deployment commands here
-    - echo "Deployment script goes here"
+    - ssh $usr@$server #-t "cd /home/ubuntu && bash d.sh"
+
   only:
     - main  # Only deploy from the main branch (adjust as needed)
 
