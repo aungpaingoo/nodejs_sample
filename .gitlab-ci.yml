@@ -26,9 +26,9 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - cd sample-nodejs && docker build -t jaft/my-node:latest .
-#    - docker login -u jaft -p justafool
-#    - docker push jaft/node-web-app:latest
+    - cd nodejs-sample && docker build -t jaft/my-node:latest .
+    - docker login -u jaft -p justafool
+    - docker push jaft/node-web-app:latest
 
 
 unit-test-job:   # This job runs in the test stage.
