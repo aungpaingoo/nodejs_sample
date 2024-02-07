@@ -24,7 +24,7 @@ deploy:
   stage: deploy
   script:
     # Add deployment commands here
-    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | id_rsa # add ssh key
+    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' > id_rsa # add ssh key
     #- ssh-add $UB_SSH_PRIVATE_KEY
     - chmod 600 id_rsa
     - ssh -i id_rsa "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
