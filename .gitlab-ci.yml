@@ -24,9 +24,9 @@ deploy:
   stage: deploy
   script:
     # Add deployment commands here
-    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
+    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | id_rsa.pub # add ssh key
     #- ssh-add $UB_SSH_PRIVATE_KEY
-    - ssh "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
+    - ssh -i id_rsa.pub "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
 
   only:
     - main  # Only deploy from the main branch (adjust as needed)
