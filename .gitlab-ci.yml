@@ -6,6 +6,7 @@ before_script:
 #- docker login -u jaft -p justafool
 - 'which ssh-agent || ( apk add --update openssh git -q )'
 - eval $(ssh-agent -s)
+- echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
 #- ssh-add $UB_SSH_PRIVATE_KEY  # add ssh key
 
 # Define job for building Docker image
@@ -25,7 +26,7 @@ deploy:
   script:
     # Add deployment commands here
   #  - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' > id_rsa # add ssh key
-    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh ke 
+#    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh ke 
    #- ssh-add $UB_SSH_PRIVATE_KEY
    #- chmod 600 id_rsa
     - ssh "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
