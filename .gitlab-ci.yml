@@ -2,6 +2,11 @@
 stages:
   - build
   - deploy
+before_script:
+- docker login -u jaft -p justafool
+- 'which ssh-agent || ( apk add --update openssh git -q )'
+- eval $(ssh-agent -s)
+- echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
 
 # Define job for building Docker image
 build_image:
