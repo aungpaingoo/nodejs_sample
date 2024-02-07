@@ -5,9 +5,9 @@ stages:
 
 before_script:
   - docker login -u jaft -p justafool
-  - 'which ssh-agent || ( apk add --update openssh git -q )'
-  - eval $(ssh-agent -s)
-  - echo "$TEST_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
+#  - 'which ssh-agent || ( apk add --update openssh git -q )'
+#  - eval $(ssh-agent -s)
+#  - echo "$TEST_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
 
 build_node:
   stage: build_node
