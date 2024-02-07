@@ -10,7 +10,9 @@ before_script:
   - eval $(ssh-agent -s)
 #- echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null -v # add ssh key
 #- ssh-add $UB_SSH_PRIVATE_KEY  # add ssh key
-  - ssh-add <(echo "$UB_SSH_PRIVATE_KEY")
+  - echo "${UB_SSH_PRIVATE_KEY}" | ssh-add -
+
+ # - ssh-add <(echo "$UB_SSH_PRIVATE_KEY")
   ## Set up SSH directory
   - mkdir ~/.ssh
   - chmod 700 ~/.ssh
