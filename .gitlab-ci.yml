@@ -1,5 +1,5 @@
 # Define the stages of the pipeline
-image: jaft/cicd:latest
+#image: jaft/cicd:latest
 
 stages:
   - build
@@ -32,7 +32,7 @@ deploy:
 #    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh ke 
    #- ssh-add $UB_SSH_PRIVATE_KEY
    #- chmod 600 id_rsa
-    - ssh "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
+    - ssh  "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
 
   only:
     - main  # Only deploy from the main branch (adjust as needed)
