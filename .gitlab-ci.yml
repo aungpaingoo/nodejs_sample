@@ -19,7 +19,7 @@ deploy:
   stage: deploy
   script:
     # Add deployment commands here
-    - ssh "$ubusr"@"$ubserver" #-t "cd /home/ubuntu && bash d.sh"
+    - ssh "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
 
   only:
     - main  # Only deploy from the main branch (adjust as needed)
