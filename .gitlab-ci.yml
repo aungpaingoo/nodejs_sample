@@ -1,4 +1,6 @@
 # Define the stages of the pipeline
+image: jaft/cicd:latest
+
 stages:
   - build
   - deploy
