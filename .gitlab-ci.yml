@@ -5,19 +5,12 @@ stages:
   - build
   - deploy
 before_script:
-#- docker login -u jaft -p justafool
-  - 'which ssh-agent || ( apk add --update openssh git -q )'
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
-#- echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null -v # add ssh key
-#- ssh-add $UB_SSH_PRIVATE_KEY  # add ssh key
-  - echo "${UB_SSH_PRIVATE_KEY}" | ssh-add -
-
- # - ssh-add <(echo "$UB_SSH_PRIVATE_KEY")
-  ## Set up SSH directory
-  - mkdir ~/.ssh
+  - chmod 400 "$UB_SSH_PRIVATE_KEY"
+  - ssh-add "$UB_SSH_PRIVATE_KEY"
+  - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - echo "$TRUSTED_HOSTS" > ~/.ssh/known_hosts
-  - chmod 600 ~/.ssh/known_hosts
 
 # Define job for building Docker image
 build_image:
