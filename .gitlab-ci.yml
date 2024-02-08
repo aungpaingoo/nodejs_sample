@@ -7,10 +7,12 @@ stages:
 before_script:
   - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
-  - chmod 400 "$WSL_SSH_PRIVATE_KEY"
-  - ssh-add "$WSL_SSH_PRIVATE_KEY"
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
+  - echo "$WSL_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh key
+
+#  - chmod 400 "$WSL_SSH_PRIVATE_KEY"
+#  - ssh-add "$WSL_SSH_PRIVATE_KEY"
+#  - mkdir -p ~/.ssh
+#  - chmod 700 ~/.ssh
 
 # Define job for building Docker image
 build_image:
