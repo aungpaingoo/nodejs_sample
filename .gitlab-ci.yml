@@ -8,7 +8,7 @@ before_script:
   - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   - chmod 400 "$UB_SSH_PRIVATE_KEY"
-  - ssh-add "$UB_SSH_PRIVATE_KEY"
+  - ssh-add "$WSL_SSH_PRIVATE_KEY"
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
 
@@ -32,7 +32,7 @@ deploy:
 #    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh ke 
    #- ssh-add $UB_SSH_PRIVATE_KEY
    #- chmod 600 id_rsa
-    - ssh  "$ubusr"@"$ubserver" -t "cd /home/aungpai && mkdir Git"
+    - ssh  "$usr"@"$server" -t "mkdir GIT  "
 
   only:
     - main  # Only deploy from the main branch (adjust as needed)
