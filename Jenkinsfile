@@ -2,17 +2,33 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                // Checkout code from GitHub repository
-                git 'git@github.com:aungpaingoo/nodejs_sample.git'
-                // Save code to a directory
-                dir('my-directory') {
-                    sh 'cp -r * ../my-directory' // Copy all files and directories to 'my-directory'
+                // Checkout code from Git repository
+                sh 'git pull git@github.com:aungpaingoo/nodejs_sample.git'
+                // Save the pulled code if necessary
+                // (you might need additional steps here depending on your requirements)
+            }
+            post {
+                success {
+                    echo 'Code pulled and saved successfully'
                 }
             }
         }
         
-        // Add additional stages for building, testing, etc.
+        stage('Deploy') {
+            steps {
+                // Copy code to /home/myfolder
+                sh 'cp -r * /home/aungpai/myfolder'
+                // You can add more deployment steps here if needed
+            }
+            post {
+                success {
+                    echo 'Code deployed successfully to /home/aungpai/myfolder'
+                }
+            }
+        }
     }
 }
+
+
