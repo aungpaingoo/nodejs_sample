@@ -34,7 +34,7 @@ deploy:
 #    - echo "$UB_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -> /dev/null # add ssh ke 
    #- ssh-add $UB_SSH_PRIVATE_KEY
    #- chmod 600 id_rsa
-    - ssh  "$usr"@"$server" -t "mkdir GIT  "
+    - ssh -t  "$usr"@"$server"
 
   only:
     - main  # Only deploy from the main branch (adjust as needed)
